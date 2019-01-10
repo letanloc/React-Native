@@ -8,7 +8,25 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import {Button, Input, Form, Container, Header, Item} from 'native-base'
+import 
+import {
+    Button,
+    List,
+    Input,
+    Form,
+    Container,
+    Header,
+    Item,
+    Left,
+    Icon,
+    ListItem,
+    Body,
+    Right,
+    Image,
+    Thumbnail, Card, CardItem
+
+} from 'native-base'
+
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -18,33 +36,38 @@ const instructions = Platform.select({
 });
 
 type Props = {};
+
+const avt = "https://i.wpimg.pl/730x0/m.gadzetomania.pl/tumblr-kwh4eacbzu1qaptl6-a9d2590.jpg"
+const userDatas = [
+    {
+        id: 1,
+        name: "Le Tan Loc",
+        avatar: img,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit," +
+            " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut" +
+            " enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
+            "aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in" +
+            " voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur" +
+            "sint occaecat cupidatat non proident," +
+            " sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        type: "manager"
+    }
+]
 export default class App extends Component<Props> {
+
+    constructor(props) {
+        super(props);
+        this.state = {}
+    }
+
 
     render() {
         return (
             <Container>
-                <Header></Header>
+                <Header>
+                </Header>
                 <View style={styles.mainbox}>
                     <View style={styles.box1}>
-                        <Text style={styles.tex1}>HÈ LÚ</Text>
-                    </View>
-                    <View style={styles.box2}>
-                        <View style={{flex: 1, backgroundColor: "#fff"}}>
-                            <View style={{width: 50, height: 50, backgroundColor: "#8f9bff"}}/>
-                            <View style={{width: 50, height: 50, backgroundColor: "#0043ca"}}/>
-                        </View>
-                        <View style={{flex: 1, flexDirection: "row"}}>
-                            <View style={{width: 50, height: 50, backgroundColor: "#8f9bff"}}/>
-                            <View style={{width: 50, height: 50, backgroundColor: "#0043ca"}}/>
-                            <View style={{width: 50, height: 50, backgroundColor: "#8f9bff"}}/>
-                            <View style={{width: 50, height: 50, backgroundColor: "#0043ca"}}/>
-                            <View style={{width: 50, height: 50, backgroundColor: "#8f9bff"}}/>
-                            <View style={{width: 50, height: 50, backgroundColor: "#0043ca"}}/>
-                            <View style={{width: 50, height: 50, backgroundColor: "#8f9bff"}}/>
-                            <View style={{width: 50, height: 50, backgroundColor: "#0043ca"}}/>
-                        </View>
-                    </View>
-                    <View style={styles.box3}>
                         <Form>
                             {/*last fulll*/}
                             <Item last>
@@ -54,10 +77,30 @@ export default class App extends Component<Props> {
                             <Item last>
                                 <Input placeholder="Password"/>
                             </Item>
-
+                            {/*<Item>*/}
+                            <Button full warning>
+                                <Text>LOGIN</Text>
+                            </Button>
                         </Form>
-                        {/*<Input placeholder="username"></Input>*/}
-                        {/*<Button light><Text> Light </Text></Button>*/}
+
+                    </View>
+                    <View style={styles.box3}>
+                        <List>
+                            {userListem()}
+                            {/*<ListItem avatar>*/}
+                            {/*<Left>*/}
+                            {/*<Thumbnail*/}
+                            {/*source={{uri: 'http://chittagongit.com//images/google-g-icon/google-g-icon-26.jpg'}}/>*/}
+                            {/*</Left>*/}
+                            {/*<Body>*/}
+                            {/*<Text>Kumar Pratik</Text>*/}
+                            {/*<Text note>Doing what you like will always keep you happy . .</Text>*/}
+                            {/*</Body>*/}
+                            {/*<Right>*/}
+                            {/*<Text note>3:43 pm</Text>*/}
+                            {/*</Right>*/}
+                            {/*</ListItem>*/}
+                        </List>
                     </View>
                 </View>
             </Container>
@@ -66,17 +109,36 @@ export default class App extends Component<Props> {
     }
 }
 
+function userBaseCell(name, description, type, avatar = null) {
+    if (avatar === null) avatar = "https://pickaface.net/gallery/avatar/demo.webmaster541295de29059.png"
+    return (
+        <ListItem>
+            <Left>
+                <Thumbnail circular source={{uri: avatar}}/>
+            </Left>
+            <Body>
+            <Text/>
+
+            </Body>
+        </ListItem>
+    )
+}
+
+function userListem() {
+    return (
+        <ListItem avatar>
+            <Left><Thumbnail source={{uri: account_tie}}/></Left>
+        </ListItem>
+    )
+}
+
 const styles = StyleSheet.create({
     mainbox: {
         flex: 1,
 
     },
     box1: {
-        flex: 1,
-        backgroundColor: "green",
-        textAlign: 'center',
-        justifyContent: 'center',//center vertical
-        alignItems: 'center',// center horizontal
+        flex: 2
     },
 
     tex1: {
@@ -87,17 +149,17 @@ const styles = StyleSheet.create({
     box2: {
         flex: 2,
         flexDirection: 'column',
-        backgroundColor: '#62efff'
+        // backgroundColor: '#62efff'
     },
     box3: {
-        flex: 3,
+        flex: 5,
+        // backgroundColor: "#9be7ff"
     },
 
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
     },
     welcome: {
         fontSize: 20,
@@ -109,4 +171,10 @@ const styles = StyleSheet.create({
         color: '#333333',
         marginBottom: 5,
     },
+
+    /**
+     * list item Title
+     * */
+
+
 });

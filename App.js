@@ -7,9 +7,11 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, TextInput, Button, Navigator} from 'react-native';
+
+import {createStackNavigator} from 'react-navigation';
 import {
-    Button,
+    // Button,
     List,
     Input,
     Form,
@@ -21,10 +23,11 @@ import {
     ListItem,
     Body,
     Right,
-    Thumbnail, Card, CardItem
+    Thumbnail, Card, CardItem, Toast
 
 } from 'native-base'
 
+import Home from '/src/home/Home'
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -60,7 +63,7 @@ const userDatas = [
             " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut" +
             " enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
             "aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in" +
-            " voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur" +
+            " voluptate velit esse cillum dolore eu fugiat nulla paratur. Excepteur" +
             "sint occaecat cupidatat non proident," +
             " sunt in culpa qui officia deserunt mollit anim id est laborum.",
         type: "manager"
@@ -133,36 +136,82 @@ export default class App extends Component<Props> {
 
         return (
             <Container>
-                <Header>
-                </Header>
-                <View style={styles.mainbox}>
-                    <View style={styles.box1}>
-                        <Form>
-                            {/*last fulll*/}
-                            <Item last>
-                                <Input placeholder="Username"/>
-                            </Item>
+                {/*<Header>*/}
+                {/*</Header>*/}
+                {/*<View style={styles.mainbox}>*/}
+                    {/*<View style={styles.box1}>*/}
+                        {/*<Form/>*/}
+                        {/*<TextInput*/}
+                            {/*style={{*/}
+                                {/*height: 50,*/}
+                                {/*width: "95%",*/}
+                                {/*borderBottomWidth: 1,*/}
+                                {/*marginTop: 10,*/}
+                                {/*borderColor: "#ccc",*/}
 
-                            <Item last>
-                                <Input placeholder="Password"/>
-                            </Item>
-                            {/*<Item>*/}
-                            <Button full warning>
-                                <Text>LOGIN</Text>
-                            </Button>
-                        </Form>
+                            {/*}}*/}
+                            {/*placeholder="username"*/}
+                        {/*/>*/}
+                        {/*<TextInput*/}
+                            {/*style={{*/}
+                                {/*height: 50,*/}
+                                {/*width: "95%",*/}
+                                {/*borderBottomWidth: 1,*/}
 
-                    </View>
-                    <View style={styles.box3}>
-                        <List dataArray={userDatas}
-                              renderRow={(t) => userBaseCell(t.name, t.description, t.type, t.avatar, t.status)}>
-                        </List>
-                    </View>
-                </View>
+                                {/*borderColor: "#ccc",*/}
+                            {/*}}*/}
+                            {/*placeholder="password"*/}
+                        {/*/>*/}
+
+                        {/*<Button*/}
+                            {/*style={{*/}
+                                {/*marginTop: 10,*/}
+                                {/*width: "30%",*/}
+                                {/*backgroundColor: "#CCCCCC",*/}
+                                {/*flexGrow: 1*/}
+                            {/*}}*/}
+                            {/*title="Login"*/}
+                            {/*onPress={buttonClick}*/}
+                        {/*/>*/}
+
+                        {/*<Form>*/}
+                        {/*/!*last fulll*!/*/}
+                        {/*<Item last>*/}
+                        {/*<Input placeholder="Username"/>*/}
+                        {/*</Item>*/}
+
+                        {/*<Item last>*/}
+                        {/*<Input placeholder="Password"/>*/}
+                        {/*</Item>*/}
+                        {/*/!*<Item>*!/*/}
+                        {/*<Button full warning onPress={() =>*/}
+                        {/*showToast()*/}
+                        {/*}>*/}
+                        {/*<Text>LOGIN</Text>*/}
+                        {/*</Button>*/}
+                        {/*</Form>*/}
+                    {/*</View>*/}
+                    {/*<View style={styles.box3}>*/}
+                        {/*<List dataArray={userDatas}*/}
+                        {/*renderRow={(t) => userBaseCell(t.name, t.description, t.type, t.avatar, t.status)}>*/}
+                        {/*</List>*/}
+                    {/*</View>*/}
+                {/*</View>*/}
+
+                {/*<Navigator init`*/}
             </Container>
 
-        );
+        )
+            ;
     }
+}
+
+function buttonClick() {
+
+}
+
+function showToast() {
+
 }
 
 function userBaseCell(name, description, type, avatar = null, status = false) {
@@ -177,7 +226,7 @@ function userBaseCell(name, description, type, avatar = null, status = false) {
             </Left>
             <Body>
             <Text style={{fontSize: 15, fontWeight: 'bold'}}>
-                {name}
+                {name}-
             </Text>
             <Text style={{fontSize: 14, fontWeight: 'normal', color: "#CCCCCC"}}>{description}</Text>
             <Text style={{color: "#FFCA28", fontSize: 10}}>{type}</Text>
@@ -191,31 +240,14 @@ function userBaseCell(name, description, type, avatar = null, status = false) {
     )
 }
 
-function listView() {
-    let c = []
-    let a = 0
-
-    let abc = userDatas.map(function (t) {
-        c[a] = userBaseCell(t.name, t.description, t.type, t.avatar, t.status)
-        a++
-    });
-
-    return (
-        <List sc>{
-            c
-        }
-        </List>
-
-    )
-}
-
-
 const styles = StyleSheet.create({
     mainbox: {
         flex: 1,
     },
     box1: {
-        flex: 2
+        flex: 2,
+        alignItems: 'center',
+        // justifyContent: 'center'
     },
 
     tex1: {
@@ -250,6 +282,5 @@ const styles = StyleSheet.create({
     /**
      * list item Title
      * */
-
 
 });
